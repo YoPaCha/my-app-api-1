@@ -14,12 +14,3 @@
 ## insert data in DB
 
     INSERT INTO articles (titre, description, date) VALUES ?
-
-## DOCKERISATION : 
-  
-    - 1: containeriser le front
-        - créer un dockerfile (npm run build puis npm run start)
-        - ajouter le service dans le docker compose 
-    - 2 : tester la connexion entre les 3 services sur docker en lancant le docker compose
-        
-
