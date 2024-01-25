@@ -13,6 +13,7 @@ COPY package*.json ./
 # Install any needed dependencies specified in package.json
 RUN npm install
 
+#SET ENV VARIABLES
 ENV NODE_ENV=production
 
 # Copy the rest of the application code to the working directory

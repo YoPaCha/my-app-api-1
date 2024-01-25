@@ -18,7 +18,7 @@ const specs = swaggerJsDoc(options);
 
 app.use(swaggerUi.serve);
 
-app.get("/api-docs", swaggerUi.setup(specs));
+app.get("/api-docs",swaggerUi.setup(specs));
 
 // on se connecte à la base de données avec la configuration de sequelize
 const sequelize = new Sequelize(config.database, config.username, config.password, {
@@ -33,11 +33,9 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 // on synchronise sequelize avec la base de données
 // La synchronisation permet de créer les tables dans la base de données si elles n'existent pas
 
-/* 
-redisClient.connect().then(() => {
-    console.log("redis conencted")
-}).catch(err => console.log(err));
-*/
+// redisClient.connect().then(() => {
+//     console.log("redis conencted")
+// }).catch(err => console.log(err));
 
 sequelize.sync()
     .then(() => {
@@ -47,10 +45,11 @@ sequelize.sync()
         console.error('database synchronisation error :', err);
     });
 
-// On définit une route initiale pour vérifier que le serveur fonctionne
-app.get("/", (req, res) => {
-    res.send("Welcome to my API");
-})
+    
+    // On définit une route initiale pour vérifier que le serveur fonctionne
+    app.get("/", (req, res) => {
+        res.send("Welcome to my API");
+    })
 
 app.get('/api/data-replication', async (req, res) => {
     try {
