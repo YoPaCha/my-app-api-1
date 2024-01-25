@@ -14,6 +14,8 @@ const options = require('./swaggerOptions.js');
 app.use(cors())
 app.options(process.env.FRONTEND_URL, cors());
 
+const specs = swaggerJsDoc(options);
+
 app.use(swaggerUi.serve);
 
 app.get("/api-docs", swaggerUi.setup(specs));
