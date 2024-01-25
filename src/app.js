@@ -5,8 +5,11 @@ const cors = require('cors');
 const Sequelize = require('sequelize');
 const config = require('./config/config.js')[process.env.NODE_ENV || 'development'];
 const router = require('./routes/index.js');
-const redis = require('redis');
 const db = require('./models/index.js');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const options = require('./swaggerOptions.js');
+
 // on utilise cors pour autoriser les requêtes provenant d'autres domaines
 app.use(cors())
 app.options(process.env.FRONTEND_URL, cors());
@@ -16,17 +19,13 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
     port: config.port,
     host: config.host,
     dialect: config.dialect,
+    dialectOptions: {
+        connectTimeout: 60000
+    }
 });
 
 // on synchronise sequelize avec la base de données
 // La synchronisation permet de créer les tables dans la base de données si elles n'existent pas
-
-// tester la connection redis:
-const redisClient = redis.createClient({
-    host: '127.0.0.1',
-    port: 6379,
-    password:'root'
-});
 
 /* 
 redisClient.connect().then(() => {
