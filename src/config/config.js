@@ -1,3 +1,4 @@
+/*
 const dotenv = require('dotenv');
 
 // On récupère l'environement dans lequel on se trouve (développement, production, test)
@@ -40,6 +41,29 @@ const commonConfig = {
 }
 
 // Export de la configuration
+module.exports = {
+  development: commonConfig,
+  test: commonConfig,
+  production: commonConfig
+}
+*/
+
+const DB_USER = process.env.DB_USER;
+const DB_PWD = process.env.DB_PWD;
+const DB_NAME = process.env.DB_NAME;
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+
+const commonConfig = {
+  username: DB_USER,
+  password: DB_PWD,
+  database: DB_NAME,
+  host: DB_HOST,
+  port: DB_PORT,
+  dialect: "mysql"
+}
+
+// Export the configuration
 module.exports = {
   development: commonConfig,
   test: commonConfig,
