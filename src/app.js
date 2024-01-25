@@ -14,6 +14,10 @@ const options = require('./swaggerOptions.js');
 app.use(cors())
 app.options(process.env.FRONTEND_URL, cors());
 
+app.use(swaggerUi.serve);
+
+app.get("/api-docs", swaggerUi.setup(specs));
+
 // on se connecte à la base de données avec la configuration de sequelize
 const sequelize = new Sequelize(config.database, config.username, config.password, {
     port: config.port,
