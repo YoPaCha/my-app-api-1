@@ -74,6 +74,6 @@ router.get('/', getArticles);
  * 
  */
 
-router.get('/:id',getArticle);
+router.get('/:id', getArticle);
 
 module.exports = router;

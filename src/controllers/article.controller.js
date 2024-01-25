@@ -35,10 +35,24 @@ module.exports = {
     getArticle: async (req, res) => { 
             
             try {
+
+                if (isNaN(req.params.id)) {
+                    return res.status(400).json({
+                        success: false,
+                        message: "Bad request. No id provided"
+                    });
+                }
                 // on récupère l'article avec la méthode de sequelize findByPk()
                 const article = await db.Article.findByPk(req.params.id);
+
+                if (!article) {
+                    return res.status(404).json({
+                        success: false,
+                        message: "Article not found"
+                    });
+                }
                 // on renvoie l'article en json
-                res.status(200).json({
+                return res.status(200).json({
                     results: article,
                     success: true
                 });

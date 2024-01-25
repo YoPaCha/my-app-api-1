@@ -9,8 +9,10 @@ function createRandomUser() {
     };
 }
 
+const ARTICLE = createRandomArticle();
+
 const ARTICLES = faker.helpers.multiple(createRandomUser, {
     count: 10,
 });
 
-module.exports = { ARTICLES };
+module.exports = { ARTICLES, ARTICLE };
