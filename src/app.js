@@ -28,9 +28,11 @@ const redisClient = redis.createClient({
     password:'root'
 });
 
+/* 
 redisClient.connect().then(() => {
     console.log("redis conencted")
 }).catch(err => console.log(err));
+*/
 
 sequelize.sync()
     .then(() => {
